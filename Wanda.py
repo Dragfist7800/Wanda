@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from io import BytesIO
 from io import StringIO
 import wikipedia
+import smtplib
 import datetime
 num = 1
 
@@ -16,7 +17,7 @@ num = 1
 def assistant_speaks(output):
     global num
     num +=1
-    print("wanda : ", output)
+    print("Wanda : ", output)
     toSpeak = gTTS(text=output, lang='en-US', slow=False)
     file = str(num)+".mp3"
     toSpeak.save(file)
@@ -70,6 +71,26 @@ def search_web(input):
             indx = input.lower().split().index('google')
             query = input.split()[indx + 1:]
             driver.get("https://www.google.com/search?q=" + '+'.join(query))
+        elif 'email' in query:
+            assistant_speaks('Who is the recipient ?')
+            recipient = get_audio()
+
+            if 'me' in recipient:
+                try:
+                    assistant_speaks('What should I say? ')
+                    content = get_audio()
+        
+                    server = smtplib.SMTP('smtp.gmail.com', 587)
+                    server.ehlo()
+                    server.starttls()
+                    server.login("Your_Username", 'Your_Password')
+                    server.sendmail('Your_Username', "Recipient_Username", content)
+                    server.close()
+                    assistant_speaks('Email sent!')
+
+                except:
+                    assistant_speaks('Sorry Sir! I am unable to send your message at this moment!')
+            
         else:
             driver.get("https://www.google.com/search?q=" + '+'.join(input.split()))
         return
@@ -123,19 +144,24 @@ def process_text(input):
             speak="oh! good to hear that"
             assistant_speaks(speak)
             return
+        elif "who made you" in input or "who is your father" in input :
+            speak="Oh i was created simply as a wikipedia bot by adhwaith. which then extended to a personal assistant"
+            assistant_speaks(speak)
+            return
         elif "crazy" in input:
-            speak = """i am crazy """
+            speak = """i am crazy i am created by adhwaith"""
             assistant_speaks(speak)
             return
         elif "time" in input :
             strTime = datetime.datetime.now().strftime("%H:%M:%S")
             assistant_speaks(f"the time is {strTime}")
+            return
         elif "wikipedia" in input :
             results = wikipedia.summary(input.lower(), sentences=2)
             assistant_speaks('Got it.')
             assistant_speaks('According to wikipedia : ')
             assistant_speaks(results)
-        
+            return  
         elif "calculate" in input.lower():
             app_id= "E46YXW-T5LG6RT7K7"
             client = wolframalpha.Client(app_id)
