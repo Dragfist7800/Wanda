@@ -116,13 +116,15 @@ def open_application(input):
     elif "Powerpoint" in input:
         assistant_speaks("Opening Powerpoint")
         os.startfile('C:\Program Files (x86)\Microsoft Office\Office15\POWERPNT.exe')
+        return
     elif "Outlook" in input:
         assistant_speaks("Opening Outlook")
         os.startfile('C:\Program Files (x86)\Microsoft Office\Office15\OUTLOOK.exe')
-        
+        return
     elif "My computer" or "File" in input:
         assistant_speaks("Opening File Explorer")
         os.starfile('')
+        return
     else:
         assistant_speaks("Application not available")
         return
@@ -142,6 +144,14 @@ def process_text(input):
             return
         elif "fine" in input:
             speak="oh! good to hear that"
+            assistant_speaks(speak)
+            return
+        elif "who made you" in input or "who is your father" in input :
+            speak="Oh i was created simply as a wikipedia bot. which then extended to a personal assistant"
+            assistant_speaks(speak)
+            return
+        elif "crazy" in input:
+            speak = """Am I ?"""
             assistant_speaks(speak)
             return
         elif "time" in input :
