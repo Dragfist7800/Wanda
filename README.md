@@ -1,6 +1,7 @@
 # **Wanda**
 *An Virtual Assistant with Voice Recognition*
-**Features**
+
+#**Features**
 *Interations *Calculations *Searching *Wikipedia *manage files *etc
 
 Here is the full source Code and the original Code of Wanda
@@ -11,7 +12,7 @@ Here is the full source Code and the original Code of Wanda
 
 *Added Comments to understand the Functions
 
-**Installation**
+#**Module Installation**
 First of all install the requirements.txt file by using command
 
 pip install -r requirements.txt
