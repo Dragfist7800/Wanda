@@ -3,11 +3,16 @@
 
 # Features
 
-*Interations
+*Interactions
+
 *Calculations
+
 *Searching
+
 *Wikipedia
-*manage files 
+
+*manage files
+
 *etc
 
 Here is the full source Code and the original Code of Wanda
@@ -34,4 +39,7 @@ If using latest version of python use python -m before pip install
 
 eg:- >python -m pip install -r requirements.txt
 
+# Run on Repl.it
+
 [![Run on Repl.it](https://repl.it/badge/github/Dragfist7800/Wanda)](https://repl.it/github/Dragfist7800/Wanda)
+As Repl.it does not include Speech_recogntion module this program is unable to run on Repl.it, sorry for the inconvenience
